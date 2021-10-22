@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="QuickerTools.Controls.X.VariableListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dd="urn:gong-wpf-dragdrop"
+             xmlns:fa="clr-namespace:FontAwesome5.WPF;assembly=FontAwesomeIconsWpf"
+             xmlns:local="clr-namespace:QuickerTools.Controls.X"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200">
+    <Grid>
+        <ListBox Name="LbVariables" Grid.Row="1" MinHeight="50" HorizontalContentAlignment="Stretch"
+               dd:DragDrop.IsDragSource="true" dd:DragDrop.IsDropTarget="true" Background="LightGray"
+               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="White" Tag="{Binding}">
+                        <FrameworkElement.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Name="MenuItemHighlightVar" Header="高亮使用此变量的步骤" ToolTip="高亮使用此变量的步骤" Tag="{Binding}">
+                                    <MenuItem.Icon>
+                                        <fa:SvgAwesome Width="14" Height="14" Foreground="#FF3333" Icon="Light_Highlighter"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </FrameworkElement.ContextMenu>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="0,0,5,0" Padding="0" BorderBrush="#FFF"
+                      BorderThickness="0"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Control.Background" Value="Transparent"/>
+                    <Setter Property="Control.Padding" Value="2,0,0,0"/>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border x:Name="Bd" Padding="{TemplateBinding Control.Padding}"
+                          Background="{TemplateBinding Control.Background}"
+                          BorderBrush="{TemplateBinding Control.BorderBrush}"
+                          BorderThickness="{TemplateBinding Control.BorderThickness}" SnapsToDevicePixels="true"
+                          Tag="{Binding}">
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="ListBoxItem.IsSelected" Value="true">
+                                        <Setter TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                              Property="Border.Background"/>
+                                    </Trigger>
+                                    <Trigger Property="UIElement.IsEnabled" Value="false">
+                                        <Setter Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Property="Control.Foreground"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ListBox>
+
+    </Grid>
+</UserControl>

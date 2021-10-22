@@ -1,0 +1,49 @@
+﻿<UserControl
+    x:Class="QuickerTools.Controls.HelpLinkControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:domain="clr-namespace:QuickerTools.Domain"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:QuickerTools.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:qk="clr-namespace:Quicker.View.Controls;assembly=Quicker"
+    d:DesignHeight="200"
+    d:DesignWidth="200"
+    mc:Ignorable="d">
+    <Grid>
+        <ListBox x:Name="TheListBox" MouseLeftButtonUp="TheListBox_MouseLeftButtonUp">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type domain:HelpLinkItem}">
+                    <Grid Height="30" Margin="-3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <qk:IconControl Height="24" Icon="{Binding Icon}" />
+                        <!--<hc:ImageBlock Source="{Binding Icon}"></hc:ImageBlock>-->
+                        <!--<Image Source="{Binding Icon}" Height="24"></Image>-->
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="3"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Text="{Binding Title}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.Items>
+                <domain:HelpLinkItem
+                    Title="表达式QK"
+                    HelpLink="https://getquicker.net/kc/help/doc/expression#Eos9Y"
+                    Icon="https://files.getquicker.net/_sitefiles/quicker_round_128.png" />
+                <domain:HelpLinkItem
+                    Title="菜鸟C#教程"
+                    HelpLink="https://www.runoob.com/csharp/csharp-tutorial.html"
+                    Icon="https://files.getquicker.net/_icons/5F13262632D52E19DDC0B9275270B4354A13C80F.png" />
+            </ListBox.Items>
+        </ListBox>
+
+    </Grid>
+</UserControl>

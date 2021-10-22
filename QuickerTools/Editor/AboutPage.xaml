@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="QuickerTools.Editor.AboutPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:QuickerTools.Editor"
+             xmlns:controls="clr-namespace:QuickerTools.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style x:Key="CheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--<hc:SearchBar Margin="2" Name="SearchBar" SearchStarted="SearchBar_SearchStarted">
+            
+        </hc:SearchBar>-->
+        <TextBox x:Name="SearchBar" KeyDown="SearchBar_KeyDown" ToolTip="搜文档"></TextBox>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="5">
+            
+        <CheckBox  x:Name="Check_DotNet" HorizontalAlignment="Left" Margin="2"
+            Content="搜.NET文档" IsEnabled="True" IsChecked="True"></CheckBox>
+            <CheckBox x:Name="Check_Google" HorizontalAlignment="Left" Margin="2"
+                      Content="搜Google" IsChecked="False"></CheckBox>
+        </StackPanel>
+            <controls:HelpLinkControl Grid.Row="2" Margin="0"></controls:HelpLinkControl>
+    </Grid>
+</UserControl>
